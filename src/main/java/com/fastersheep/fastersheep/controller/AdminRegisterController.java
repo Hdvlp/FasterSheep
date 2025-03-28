@@ -6,24 +6,19 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-public class RegisterController {
-
-    // Anyone can register to become a user
-    // in this case.
-    //
-    // Permissions are set in the file SecurityConfig.
+public class AdminRegisterController {
     
-    @GetMapping("/userRegister")
+    @GetMapping("/adminRegister")
     public String indexPage(HttpServletRequest request) {
 
         return new String("""
                 <!doctype>
                 <html><head><meta charset="UTF-8"/>
-                <style>body{font-size: 24px;} input{font-size: 24px;}</style>
+                <style>body{font-size: 24px; background: #ccbbbc;} input{font-size: 24px;}</style>
                 </head>
                 <body>
                     <div>Register</div>
-                    <div><form action="/register" method="POST"></div>
+                    <div><form action="/adminRegister/create" method="POST"></div>
                     <div>User name: <input name="username" type="text"/></div>
                     <div>Password: <input name="password" type="password"/></div>
                     <div><input name="submit" type="submit" value="Submit"/></div>

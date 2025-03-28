@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
-public class UserController {
+public class AdminCreateController {
 
     @Autowired
     private UserService service;
 
-    @PostMapping("/register")
+    @PostMapping("/adminRegister/create")
     public String register(@RequestParam Map<String, String> body){   
         Users user = new Users(); 
         String tmpUsername = body.get("username").trim();
@@ -68,7 +68,7 @@ public class UserController {
         List<RoleEnum> roleEnums = new ArrayList<>();
 
         // This is where you add different permissions. See RoleEnum.
-        roleEnums.add(RoleEnum.USER);
+        roleEnums.add(RoleEnum.ADMIN);
         user.setRoles(roleEnums);
         return service.register(user);
     }

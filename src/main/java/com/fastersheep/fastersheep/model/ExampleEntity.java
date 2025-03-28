@@ -28,12 +28,12 @@ public class ExampleEntity {
 
 
     @PostLoad
-    public void populateRole() {
+    public void populateCurrencies() {
         this.currencyObj = Currencies.fromValue(this.currencies);
     }
 
     @PrePersist
-    public void populateRoleValue() {
+    public void populateCurrenciesValue() {
         this.currencies = this.currencyObj.getValue();
     }
 

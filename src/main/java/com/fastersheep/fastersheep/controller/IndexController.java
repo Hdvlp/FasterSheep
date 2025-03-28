@@ -13,7 +13,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String indexPage(HttpServletRequest request) {
-        //return new String("Hello here..." + request.getSession().getId());
+
         return new String("""
             <!DOCTYPE html>
                 <html><head><meta charset="UTF-8"/>

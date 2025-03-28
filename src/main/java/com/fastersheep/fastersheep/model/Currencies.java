@@ -33,6 +33,6 @@ public enum Currencies {
                 return currency.getValue();
             }
         }
-        return -1; // Return -1 if the roleName is invalid
+        return -1; // Return -1 if the currencyName is invalid
     }
 }

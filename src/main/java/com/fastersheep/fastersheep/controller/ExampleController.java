@@ -44,11 +44,7 @@ public class ExampleController {
                     break;
                 }
             }
-            // if (currencies.equalsIgnoreCase("usd")) currenciesGet = Currencies.USD;
-            // if (currencies.equalsIgnoreCase("hkd")) currenciesGet = Currencies.HKD;
-            // if (currencies.equalsIgnoreCase("cny")) currenciesGet = Currencies.CNY;
-            // if (currencies.equalsIgnoreCase("jpy")) currenciesGet = Currencies.JPY;
-            // if (currencies.equalsIgnoreCase("gbp")) currenciesGet = Currencies.GBP;
+
         Page<ExampleEntity> l = service.getEntitySortedByTimestampPartG(currenciesGet);
 
         String res = "";
