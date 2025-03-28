@@ -1,8 +1,8 @@
 package com.fastersheep.fastersheep.service;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,13 +30,13 @@ public class UserDetailsServices implements UserDetailsService{
             throw new UsernameNotFoundException(username + " Not Found");
         }
 
-        BigInteger roles = repo.findRolesByUsername(username);
+        BigInteger roles = new BigInteger(repo.findRolesByUsername(username));
 
-        List<String> rolesArr = new ArrayList<>();
+        Set<String> rolesArr = new HashSet<>();
 
         for (RoleEnum roleEnum : RoleEnum.values()) {
-            if (roles.mod(roleEnum.getValue()) == 
-                BigInteger.valueOf(0)) {
+            if (roles.mod(roleEnum.getValue())
+                    .equals(BigInteger.ZERO) == true) {
                 rolesArr.add("ROLE_" + roleEnum.name());
             }
         }

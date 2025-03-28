@@ -7,9 +7,10 @@ import com.fastersheep.fastersheep.model.RoleEnum;
 import com.fastersheep.fastersheep.model.Users;
 import com.fastersheep.fastersheep.service.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,7 +66,7 @@ public class AdminCreateController {
 
         // FAQ:
         // Add the roles needed.
-        List<RoleEnum> roleEnums = new ArrayList<>();
+        Set<RoleEnum> roleEnums = new HashSet<>();
 
         // This is where you add different permissions. See RoleEnum.
         roleEnums.add(RoleEnum.ADMIN);

@@ -24,12 +24,12 @@ public enum RoleEnum {
     //
     //
     // Example:
-    //         for (RoleEnum roleEnum : RoleEnum.values()) {
-    //                  if (roles.mod(roleEnum.getValue()) == 
-    //                  BigInteger.valueOf(0)) {
-    //                  rolesArr.add("ROLE_" + roleEnum.name());
-    //              }
-    //          }
+    //                 for (RoleEnum roleEnum : RoleEnum.values()) {
+    //                      if (roles.mod(roleEnum.getValue())
+    //                              .equals(BigInteger.ZERO) == true) {
+    //                          rolesArr.add("ROLE_" + roleEnum.name());
+    //                      }
+    //                  }
     //
     //
     // There is also the file called RoleConfig

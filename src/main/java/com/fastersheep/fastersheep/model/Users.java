@@ -1,7 +1,7 @@
 package com.fastersheep.fastersheep.model;
 
 import java.math.BigInteger;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,11 +26,11 @@ public class Users {
     @Column(name = "password", unique = true, nullable = false)
     private String password;
 
-    @Column(name = "roles")
-    private BigInteger roles = RoleEnum.NOBODY.getValue();
+    @Column(name = "roles", columnDefinition = "text")
+    private String roles = RoleEnum.NOBODY.getValue().toString(10);
 
     public Users(){
-        this.roles = RoleEnum.NOBODY.getValue();
+        this.roles = RoleEnum.NOBODY.getValue().toString(10);
     }
 
     public void setId(int id) {
@@ -42,19 +42,21 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setRoles(List<RoleEnum> roleList) {
-        BigInteger tmpRoles = this.roles;
+    public void setRoles(Set<RoleEnum> roleList) {
+        BigInteger tmpRoles = new BigInteger(this.roles);
         for (RoleEnum roleEnum : roleList){
-            if (tmpRoles.mod(roleEnum.getValue()) != BigInteger.valueOf(0) && 
-                tmpRoles == RoleEnum.NOBODY.getValue()){
+            if (tmpRoles.mod(roleEnum.getValue())
+                    .equals(BigInteger.ZERO) == false && 
+                tmpRoles.equals(RoleEnum.NOBODY.getValue()) == true){
                 tmpRoles = roleEnum.getValue();
             }
-            if (tmpRoles.mod(roleEnum.getValue()) != BigInteger.valueOf(0) && 
-                tmpRoles != RoleEnum.NOBODY.getValue()){
+            if (tmpRoles.mod(roleEnum.getValue())
+                    .equals(BigInteger.ZERO) == false && 
+                tmpRoles.equals(RoleEnum.NOBODY.getValue()) == false){
                 tmpRoles = tmpRoles.multiply(roleEnum.getValue());
             }
         }
-        this.roles = tmpRoles;
+        this.roles = tmpRoles.toString(10);
     }
     
     public int getId() {
@@ -67,7 +69,7 @@ public class Users {
         return password;
     }
 
-    public BigInteger getRoles() {
+    public String getRoles() {
         return roles;
     }
 

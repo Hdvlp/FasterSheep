@@ -1,8 +1,6 @@
 package com.fastersheep.fastersheep.repo;
 
 
-import java.math.BigInteger;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,5 +11,5 @@ public interface UserRepo extends JpaRepository<Users, Integer>{
     Users findByUsername(String username);
 
     @Query("select p.roles from Users p where p.username = ?1")
-    BigInteger findRolesByUsername(String username);
+    String findRolesByUsername(String username);
 }
