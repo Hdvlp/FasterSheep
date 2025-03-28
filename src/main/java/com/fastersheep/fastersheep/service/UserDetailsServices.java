@@ -1,5 +1,6 @@
 package com.fastersheep.fastersheep.service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +30,13 @@ public class UserDetailsServices implements UserDetailsService{
             throw new UsernameNotFoundException(username + " Not Found");
         }
 
-        long roles = repo.findRolesByUsername(username);
+        BigInteger roles = repo.findRolesByUsername(username);
 
         List<String> rolesArr = new ArrayList<>();
 
         for (RoleEnum roleEnum : RoleEnum.values()) {
-            if (roles % roleEnum.getValue() == 0) {
+            if (roles.mod(roleEnum.getValue()) == 
+                BigInteger.valueOf(0)) {
                 rolesArr.add("ROLE_" + roleEnum.name());
             }
         }

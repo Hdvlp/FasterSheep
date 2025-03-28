@@ -28,6 +28,9 @@ public class RoleConfig {
     public RoleHierarchy roleHierarchy() {
 
       // FAQ:
+      // 
+      // Example:
+      //
       // ROLE_USER > ROLE_GUEST means that if ROLE_GUEST is allowed to do A,
       // ROLE_USER is automatically allowed as well.
       // ROLE_STAFF > ROLE_USER means that if ROLE_USER is allowed to do A,
@@ -48,10 +51,29 @@ public class RoleConfig {
 
 
       RoleHierarchyImpl roleHierarchyImpl = RoleHierarchyImpl.fromHierarchy("""
-				  ROLE_DBADMIN > ROLE_ADMIN
+				  ROLE_DBADMIN > ROLE_CEO
+				  ROLE_CEO > ROLE_CFO
+				  ROLE_CFO > ROLE_CTO
+				  ROLE_CTO > ROLE_ADMIN
 				  ROLE_ADMIN > ROLE_STAFF
-				  ROLE_STAFF > ROLE_USER
+				  ROLE_STAFF > ROLE_DEPARTMENTA
+				  ROLE_DEPARTMENTA > ROLE_DEPARTMENTB
+				  ROLE_DEPARTMENTB > ROLE_DEPARTMENTC
+				  ROLE_DEPARTMENTC > ROLE_DEPARTMENTD
+				  ROLE_DEPARTMENTD > ROLE_DEPARTMENTE
+				  ROLE_DEPARTMENTE > ROLE_DEPARTMENTF
+				  ROLE_DEPARTMENTF > ROLE_DEPARTMENTG
+				  ROLE_DEPARTMENTG > ROLE_DEPARTMENTH
+				  ROLE_DEPARTMENTH > ROLE_DEPARTMENTI
+				  ROLE_DEPARTMENTI > ROLE_DEPARTMENTJ
+				  ROLE_DEPARTMENTJ > ROLE_DEPARTMENTK
+				  ROLE_DEPARTMENTK > ROLE_DEPARTMENTL
+				  ROLE_DEPARTMENTL > ROLE_DEPARTMENTM
+				  ROLE_DEPARTMENTM > ROLE_DEPARTMENTN
+				  ROLE_DEPARTMENTN > ROLE_DEPARTMENTO
+				  ROLE_DEPARTMENTO > ROLE_USER
 				  ROLE_USER > ROLE_GUEST
+				  ROLE_GUEST > ROLE_NOBODY
 				""");
       return roleHierarchyImpl;
     }

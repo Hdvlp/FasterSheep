@@ -1,5 +1,6 @@
 package com.fastersheep.fastersheep.model;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -26,7 +27,7 @@ public class Users {
     private String password;
 
     @Column(name = "roles")
-    private long roles = RoleEnum.NOBODY.getValue();
+    private BigInteger roles = RoleEnum.NOBODY.getValue();
 
     public Users(){
         this.roles = RoleEnum.NOBODY.getValue();
@@ -42,13 +43,15 @@ public class Users {
         this.password = password;
     }
     public void setRoles(List<RoleEnum> roleList) {
-        long tmpRoles = this.roles;
+        BigInteger tmpRoles = this.roles;
         for (RoleEnum roleEnum : roleList){
-            if (tmpRoles % roleEnum.getValue() != 0 && tmpRoles == RoleEnum.NOBODY.getValue()){
+            if (tmpRoles.mod(roleEnum.getValue()) != BigInteger.valueOf(0) && 
+                tmpRoles == RoleEnum.NOBODY.getValue()){
                 tmpRoles = roleEnum.getValue();
             }
-            if (tmpRoles % roleEnum.getValue() != 0 && tmpRoles != RoleEnum.NOBODY.getValue()){
-                tmpRoles *= roleEnum.getValue();
+            if (tmpRoles.mod(roleEnum.getValue()) != BigInteger.valueOf(0) && 
+                tmpRoles != RoleEnum.NOBODY.getValue()){
+                tmpRoles = tmpRoles.multiply(roleEnum.getValue());
             }
         }
         this.roles = tmpRoles;
@@ -64,7 +67,7 @@ public class Users {
         return password;
     }
 
-    public long getRoles() {
+    public BigInteger getRoles() {
         return roles;
     }
 
